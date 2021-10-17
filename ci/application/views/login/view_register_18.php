@@ -50,14 +50,19 @@
                     <div class="input-group mb-3">
                         <label for="peran">Peran : </label>
                         <select class="form-control" id="peran" name="peran">
-                            <option value="Admin">Admin</option>
-                            <option value="Kontributtor">Kontributor</option>
-                        </select>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
+                            <?php
+                           
+                            foreach ($perans as $peran) :
+                                // var_dump($perans);
+                    ?>
+                                <option value="<?php echo $peran->id_peran ?>"><?php echo $peran->nama_peran ?></option>
+                    <?php endforeach; ?>
+                    </select>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
                         </div>
+                    </div>
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" name="password" placeholder="Password">
