@@ -46,8 +46,8 @@ class loginRegister_18 extends CI_Model
     //ambil url
     function ambil_url_peran($role)
     {
-        $this->db->where('id_user', $role);
-        return $this->db->get($this->table_trx_peran)->row();
+        $this->db->where('id_peran', $role);
+        return $this->db->get($this->table_peran)->row();
     }
 
     //input trx peran

@@ -18,7 +18,7 @@ class login_18 extends CI_Controller
         $user = $this->input->post('user');
         $password = $this->input->post('password');
         $login = $this->db->get_where('user', ['user' => $user])->row_array();
-        
+
         if ($user != '' && $password != '') {
             $row = $this->loginRegister_18->cek_user($user, $password);
 
@@ -26,7 +26,8 @@ class login_18 extends CI_Controller
             if ($row) {
                 $data = array(
                     'id_user' => $login['id_user'],
-                    'user' => $login['user']
+                    'user' => $login['user'],
+                    'nama_pengguna' => $login['nama_pengguna']
                 );
                 $this->session->set_userdata($data);
                 $id_user = $this->session->userdata('id_user');
@@ -37,12 +38,24 @@ class login_18 extends CI_Controller
 
                 //pindah role
                 if ($dataPeran) {
+                    //role admin
                     if ($arrayDataUser['id_peran'] == "1") {
-                        redirect('zone_admin_18');
+                        $ambilUrl = $this->loginRegister_18->ambil_url_peran($arrayDataUser['id_peran']);
+                        $arrayUrl = array(
+                            'url' => $ambilUrl->url
+                        );
+                        redirect($arrayUrl['url']);
+
+                        //role contributtor
                     } elseif ($arrayDataUser['id_peran'] == "2") {
-                        redirect('zone_contributor_18');
+                        $ambilUrl = $this->loginRegister_18->ambil_url_peran($arrayDataUser['id_peran']);
+                        $arrayUrl = array(
+                            'url' => $ambilUrl->url
+                        );
+                        redirect($arrayUrl['url']);
                     }
                 }
+                //jika error
             } else {
                 $data['pesan'] = 'user atau password yang anda masukan salah';
                 $this->load->view('loginAdmin/login', $data);
