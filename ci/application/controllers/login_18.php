@@ -9,6 +9,7 @@ class login_18 extends CI_Controller
 
     public function index()
     {
+        // $data['email'] = $this->db->get_whare();
         $this->load->view('login/view_login_18');
     }
 
@@ -16,62 +17,36 @@ class login_18 extends CI_Controller
     {
         $user = $this->input->post('user');
         $password = $this->input->post('password');
-
+        $login = $this->db->get_where('user', ['user' => $user])->row_array();
+        
         if ($user != '' && $password != '') {
-            $row = $this->Cek_login->cek_user($user, $password);
+            $row = $this->loginRegister_18->cek_user($user, $password);
 
+            //buat session
             if ($row) {
                 $data = array(
-                    'user' => $row->user,
-                    'level' => $row->level,
+                    'id_user' => $login['id_user'],
+                    'user' => $login['user']
+                );
+                $this->session->set_userdata($data);
+                $id_user = $this->session->userdata('id_user');
+                $dataPeran = $this->loginRegister_18->ambil_id_peran_trx($id_user);
+                $arrayDataUser = array(
+                    'id_peran' => $dataPeran->id_peran
                 );
 
-                $this->session->set_userdata($data);
-                // echo $_SESSION('user');
-                if ($row->level == 'Admin') {
-                    redirect('zone_admin');
-                } elseif ($row->level == 'Editor') {
-                    redirect('zone_editor');
+                //pindah role
+                if ($dataPeran) {
+                    if ($arrayDataUser['id_peran'] == "1") {
+                        redirect('zone_admin_18');
+                    } elseif ($arrayDataUser['id_peran'] == "2") {
+                        redirect('zone_contributor_18');
+                    }
                 }
             } else {
                 $data['pesan'] = 'user atau password yang anda masukan salah';
                 $this->load->view('loginAdmin/login', $data);
             }
-        }
-    }
-
-    private function _login()
-    {
-        $userlog = $this->input->post('user');
-        $password = $this->input->post('password');
-
-        $login = $this->db->get_where('user', ['user' => $userlog])->row_array();
-        if ($login) {
-            if ($login['is_aktif'] == 1) {
-                if (password_verify($password, $login['password'])) {
-                    $data = [
-                        'user' => $login['user'],
-                        'nama_pengguna' => $login['nama_pengguna'],
-                    ];
-                    $this->session->set_userdata($data);
-                    redirect('admin');
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                    Password salah!
-                  </div>');
-                    redirect('login');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            User belum diaktifkan oleh admin! Hubungi admin untuk melakukan aktifasi.
-          </div>');
-                redirect('login');
-            }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            User belum pernah terdaftar!
-          </div>');
-            redirect('login');
         }
     }
 

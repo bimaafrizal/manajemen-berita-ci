@@ -32,7 +32,7 @@
 
         <form action="<?= base_url('login_18/proses_login') ?>" method="post">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" name="email" placeholder="Email">
+            <input type="email" class="form-control" name="user" placeholder="Email">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
