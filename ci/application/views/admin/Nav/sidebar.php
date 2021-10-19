@@ -43,7 +43,7 @@
                     </li>
                 <?php } ?>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="<?= base_url('login_18/logout') ?>" class="nav-link">
                         <i class="fas fa-sign-in-alt"></i>
                         <p class="text">Logout</p>
                     </a>
