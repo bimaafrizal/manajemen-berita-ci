@@ -11,8 +11,8 @@
 <body>
     <?php
     // echo "test";
-    var_dump($a);
-    die();
+    // var_dump($a);
+    // die();
     ?>
 </body>
 
