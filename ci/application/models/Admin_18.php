@@ -10,7 +10,7 @@ class Admin_18 extends CI_Model
     public $table_menu = 'menu';
 
     //crud user
-    public function ambi_data_user()
+    public function ambil_data_user()
     {
         return $this->db->get($this->table_user)->result();
     }
@@ -25,13 +25,14 @@ class Admin_18 extends CI_Model
         $id = array('id_user' => $this->input->post('id_user'));
         return $this->db->update($this->table_user, $data, $id);
     }
+
     function get_perans()
     {
         return $this->db->get($this->table_peran)->result();
     }
     function delete_user($id)
     {
-        return $this->db->delete($this->table_user, array('id_peran' => $id));
+        return $this->db->delete($this->table_user, array('id_user' => $id));
     }
 
     //crud peran

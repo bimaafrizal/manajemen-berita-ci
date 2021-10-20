@@ -57,10 +57,10 @@ class manage_admin_18 extends CI_Controller
 
     public function hapus_user($id)
     {
-        $this->Admin_18->ambil_data_user($id);
-        $this->Admin_18->delete_peran($id);
+        $this->Admin_18->ambil_id_user($id);
+        $this->Admin_18->delete_user($id);
 
-        redirect('admin_18');
+        redirect('zone_admin_18');
     }
 
     public function peran_18()

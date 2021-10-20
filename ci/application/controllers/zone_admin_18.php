@@ -13,7 +13,7 @@ class zone_admin_18 extends CI_Controller
         $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
         $menu['menus'] = $this->db->query($querymenu)->result_array();
 
-        $dataUser = $this->Admin_18->ambi_data_user();
+        $dataUser = $this->Admin_18->ambil_data_user();
         $arrayDataUser = array(
             'datas' => $dataUser
         );
