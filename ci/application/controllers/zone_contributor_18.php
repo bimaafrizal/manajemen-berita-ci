@@ -13,16 +13,19 @@ class zone_contributor_18 extends CI_Controller
         $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
         $menu['menus'] = $this->db->query($querymenu)->result_array();
 
-        $dataKategori = $this->Contributor_18->ambil_data_kategori();
+        // $dataKategori = $this->Contributor_18->ambil_data_kategori();
+        $id_user = $this->session->userdata('id_user');
+        $query = "SELECT * FROM `kategori_berita` WHERE `id_user` = $id_user";
+        $kategori['kategoris'] = $this->db->query($query)->result_array();
         // var_dump($dataKategori);
         // die;
-        $arrayDataKategori = array(
-            'datas' => $dataKategori
-        );
+        // $arrayDataKategori = array(
+        //     'datas' => $dataKategori
+        // );
 
         $this->load->view('admin/Nav/header2');
         $this->load->view('admin/Nav/sidebar', $menu);
-        $this->load->view('contributtor/main_kategori', $arrayDataKategori);
+        $this->load->view('contributtor/main_kategori', $kategori);
         $this->load->view('admin/Nav/footer');
     }
 }

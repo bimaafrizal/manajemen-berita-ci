@@ -62,27 +62,31 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md">
-                        <h1>List User</h1>
-                        <p class="lead">Ini adalah daftar user yang tersedia.</p>
-                        <p>Silakan lakukan manajemen user yang ada dalam list di bawah ini</p>
+                        <h1>List Berita</h1>
+                        <p class="lead">Ini adalah daftar Berita yang tersedia.</p>
+                        <p>Silakan lakukan manajemen Berita yang ada dalam list di bawah ini</p>
 
                         <div class="row mb-3">
                             <div class="card-footer clearfix">
-                                <a href="<?= base_url('manage_contributor_18/tambah_kategori') ?>" role="button" class="btn btn-sm btn-info float-left">Tambah Kategori</a>
+                                <a href="<?= base_url('manage_contributor_18/tambah_berita') ?>" role="button" class="btn btn-sm btn-info float-left">Tambah Berita</a>
                             </div>
                             <div class="col-2 themed-grid-col">#</div>
-                            <div class="col-2 themed-grid-col">Nama Kategori</div>
+                            <div class="col-2 themed-grid-col">Judul Berita</div>
+                            <div class="col-2 themed-grid-col">Isi Berita</div>
+                            <div class="col-2 themed-grid-col">Tanggal</div>
                             <div class="col-2 themed-grid-col">AKSI</div>
                         </div>
                         <?php
-                        foreach ($kategoris as $kategori) {
+                        foreach ($beritas as $berita) {
                         ?>
                             <div class="row mb-3">
-                                <div class="col-2 themed-grid-col"> <?php echo $kategori['id_kategori']; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $kategori['nama_kategori']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $berita['id_berita']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $berita['judul_berita']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $berita['isi_berita']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?= date('d F Y', $berita['tanggal']); ?> </div>
                                 <div class="col-2 themed-grid-col">
-                                    <a class="btn btn-warning" href="<?= base_url('manage_contributor_18/edit_kategori/' . $kategori['id_kategori']); ?>" role="button">Edit</a>
-                                    <a class="btn btn-danger" href="<?= base_url('manage_contributor_18/hapus_kategori/' . $kategori['id_kategori']); ?>" role="button">Hapus</a>
+                                    <a class="btn btn-warning" href="<?= base_url('manage_contributor_18/edit_kategori/' . $berita['id_berita']); ?>" role="button">Edit</a>
+                                    <a class="btn btn-danger" href="<?= base_url('manage_contributor_18/hapus_kategori/' . $berita['id_berita']); ?>" role="button">Hapus</a>
                                 </div>
                             </div>
 
