@@ -62,24 +62,31 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md">
-                        <h1>List User</h1>
-                        <p class="lead">Ini adalah daftar user yang tersedia.</p>
-                        <p>Silakan lakukan manajemen user yang ada dalam list di bawah ini</p>
+                        <h1>Manajemen Menu</h1>
+                        <p class="lead">Ini adalah daftar menu yang tersedia.</p>
+                        <p>Silakan lakukan manajemen menu yang ada dalam list di bawah ini</p>
 
                         <div class="row mb-3">
                             <div class="col-2 themed-grid-col">#</div>
                             <div class="col-2 themed-grid-col">ID Peran</div>
+                            <div class="col-2 themed-grid-col">Nama Peran</div>
                             <div class="col-2 themed-grid-col">ID Menu</div>
+                            <div class="col-2 themed-grid-col">Nama Menu</div>
+                            <div class="col-2 themed-grid-col">Edit</div>
                         </div>
                         <?php
-                        foreach ($datas as $data) {
+                        foreach ($menus2 as $menu) {
                         ?>
                             <div class="row mb-3">
-                                <div class="col-2 themed-grid-col"> <?php echo $data->id_trx_menu; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $data->id_peran; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $data->id_menu; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $menu['id_trx_menu']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $menu['id_peran'] ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $menu['nama_peran']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $menu['id_menu']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $menu['nama_menu']; ?> </div>
+                                <div class="col-2 themed-grid-col">
+                                    <a class="btn btn-warning" href="<?= base_url('manage_admin_18/edit_menu_dalam_peran/' . $menu['id_menu']) ?>" role="button"> Edit </a>
+                                </div>
                             </div>
-
                         <?php } ?>
                     </div>
                 </div>

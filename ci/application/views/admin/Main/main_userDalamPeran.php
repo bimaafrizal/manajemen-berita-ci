@@ -62,22 +62,30 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md">
-                        <h1>List User</h1>
-                        <p class="lead">Ini adalah daftar user yang tersedia.</p>
-                        <p>Silakan lakukan manajemen user yang ada dalam list di bawah ini</p>
+                        <h1>Manajemen Hak Akses Peran</h1>
+                        <p class="lead">Ini adalah daftar user dan peran yang tersedia.</p>
+                        <p>Silakan lakukan manajemen user dan peran yang ada dalam list di bawah ini</p>
 
                         <div class="row mb-3">
                             <div class="col-2 themed-grid-col">#</div>
                             <div class="col-2 themed-grid-col">ID User</div>
+                            <div class="col-2 themed-grid-col">Nama User</div>
                             <div class="col-2 themed-grid-col">ID Peran</div>
+                            <div class="col-2 themed-grid-col">Nama Peran</div>
+                            <div class="col-2 themed-grid-col">Aksi</div>
                         </div>
                         <?php
-                        foreach ($datas as $data) {
+                        foreach ($users as $user) {
                         ?>
                             <div class="row mb-3">
-                                <div class="col-2 themed-grid-col"> <?php echo $data->id_trx_peran; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $data->id_user; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $data->id_peran; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $user['id_trx_peran']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $user['id_user']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $user['user']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $user['id_peran']; ?> </div>
+                                <div class="col-2 themed-grid-col"> <?php echo $user['nama_peran']; ?> </div>
+                                <div class="col-2 themed-grid-col">
+                                    <a class="btn btn-warning" href="<?= base_url('manage_admin_18/edit_peran_dalam_peran/' . $user['id_user']) ?>" role="button"> Edit </a>
+                                </div>
                             </div>
 
                         <?php } ?>

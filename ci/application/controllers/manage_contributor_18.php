@@ -11,6 +11,8 @@ class manage_contributor_18 extends CI_Controller
         $id_peran = 2;
         $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
         $menu['menus'] = $this->db->query($querymenu)->result_array();
+        
+
 
         $this->load->view('admin/Nav/header2');
         $this->load->view('admin/Nav/sidebar', $menu);
@@ -27,6 +29,7 @@ class manage_contributor_18 extends CI_Controller
             ];
 
             $this->Contributor_18->tambah_kategori($data);
+            
             redirect('zone_contributor_18');
         } else {
             redirect('manage_contributor_18/tambah_kategori');

@@ -25,10 +25,7 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        <?php
-        if (isset($pesan)) { ?>
-          <p style="color:red"> <?php echo $pesan ?></p>
-        <?php } ?>
+        <?php echo $this->session->flashdata('message'); ?>
 
         <form action="<?= base_url('login_18/proses_login') ?>" method="post">
           <div class="input-group mb-3">

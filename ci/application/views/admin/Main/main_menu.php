@@ -62,16 +62,18 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md">
-                        <h1>List User</h1>
-                        <p class="lead">Ini adalah daftar user yang tersedia.</p>
-                        <p>Silakan lakukan manajemen user yang ada dalam list di bawah ini</p>
+                        <h1>List Menu</h1>
+                        <p class="lead">Ini adalah daftar Menu yang tersedia.</p>
+                        <p>Silakan lakukan manajemen Menu yang ada dalam list di bawah ini</p>
 
+                        <!-- <a class="btn btn-success" href=" //base_url('manage_admin_18/tambah_menu/' . $data->id_menu) ?>" role="button">Tambah</a> -->
                         <div class="row mb-3">
                             <div class="col-2 themed-grid-col">#</div>
                             <div class="col-2 themed-grid-col">Nama Menu</div>
                             <div class="col-2 themed-grid-col">Url</div>
                             <div class="col-2 themed-grid-col">Nomor Urut</div>
                             <div class="col-2 themed-grid-col">Icon</div>
+                            <div class="col-2 themed-grid-col">Aksi</div>
                         </div>
                         <?php
                         foreach ($datas as $data) {
@@ -82,6 +84,10 @@
                                 <div class="col-2 themed-grid-col"> <?php echo $data->url; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $data->nomor_urut; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $data->icon; ?> </div>
+                                <div class="col-2 themed-grid-col">
+                                    <a class="btn btn-warning" href="<?= base_url('manage_admin_18/edit_menu/' . $data->id_menu) ?>" role="button">Edit</a>
+                                    <a class="btn btn-danger" href="<?= base_url('manage_admin_18/hapus_menu/' . $data->id_menu) ?>" role="button">Hapus</a>
+                                </div>
                             </div>
 
                         <?php } ?>

@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Username</label>
-                            <input type="text" class="form-control" id="username" name="user" placeholder="username(email anada)" value="<?= $user ?>">
+                            <input type="text" class="form-control" id="user" name="user" placeholder="username(email anada)" value="<?= $user ?>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>

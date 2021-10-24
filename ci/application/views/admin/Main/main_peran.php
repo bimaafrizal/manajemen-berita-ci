@@ -62,14 +62,15 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md">
-                        <h1>List User</h1>
-                        <p class="lead">Ini adalah daftar user yang tersedia.</p>
-                        <p>Silakan lakukan manajemen user yang ada dalam list di bawah ini</p>
+                        <h1>List Peran</h1>
+                        <p class="lead">Ini adalah daftar Peran.</p>
+                        <p>Silakan lakukan manajemen peran yang ada dalam list di bawah ini</p>
 
                         <div class="row mb-3">
                             <div class="col-2 themed-grid-col">#</div>
                             <div class="col-2 themed-grid-col">Nama Peran</div>
                             <div class="col-2 themed-grid-col">url</div>
+                            <div class="col-2 themed-grid-col">Aksi</div>
                         </div>
                         <?php
                         foreach ($datas as $data) {
@@ -78,6 +79,9 @@
                                 <div class="col-2 themed-grid-col"> <?php echo $data->id_peran; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $data->nama_peran; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $data->url; ?> </div>
+                                <div class="col-2 themed-grid-col">
+                                    <a class="btn btn-warning" href="<?= base_url('manage_admin_18/edit_peran/' . $data->id_peran) ?>" role="button">Edit</a>
+                                </div>
                             </div>
 
                         <?php } ?>
