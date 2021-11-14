@@ -85,12 +85,15 @@
                                 <div class="col-2 themed-grid-col"> <?php echo $berita['isi_berita']; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?= date('d F Y', $berita['tanggal']); ?> </div>
                                 <div class="col-2 themed-grid-col">
-                                    <a class="btn btn-warning" href="<?= base_url('manage_contributor_18/edit_kategori/' . $berita['id_berita']); ?>" role="button">Edit</a>
-                                    <a class="btn btn-danger" href="<?= base_url('manage_contributor_18/hapus_kategori/' . $berita['id_berita']); ?>" role="button">Hapus</a>
+                                    <a class="btn btn-warning" href="<?= base_url('Manage_contributor_18/edit_berita/' . $berita['id_berita']); ?>" role="button">Edit</a>
+                                    <a class="btn btn-danger" href="<?= base_url('Manage_contributor_18/hapus_berita/' . $berita['id_berita']); ?>" role="button">Hapus</a>
                                 </div>
                             </div>
 
                         <?php } ?>
+                        <ul>
+                            <?php echo $this->pagination->create_links(); ?>
+                        </ul>
                     </div>
                 </div>
             </div>

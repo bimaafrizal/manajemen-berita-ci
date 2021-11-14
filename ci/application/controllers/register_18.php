@@ -1,15 +1,16 @@
 <?php
-class register_18 extends CI_Controller
+class Register_18 extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('loginRegister_18');
+        $this->load->model('Loginregister_18');
     }
 
     public function index()
     {
-        $data['perans'] = $this->loginRegister_18->get_perans();
+        $this->form_validation->set_rules('email', 'email', 'required|valid_email');
+        $data['perans'] = $this->Loginregister_18->get_perans();
         $this->load->view('login/view_register_18', $data);
     }
 
@@ -27,7 +28,7 @@ class register_18 extends CI_Controller
             $tes_duplikat = $sql->num_rows();
             if ($tes_duplikat > 0) {
                 $this->session->set_flashdata('message', 'Nomor KTP Sudah digunakan sebelumnya');
-                $data['perans'] = $this->loginRegister_18->get_perans();
+                $data['perans'] = $this->Loginregister_18->get_perans();
                 redirect('register_18');
             } else {
                 if ($password == $konfirmpassword) {
@@ -37,23 +38,28 @@ class register_18 extends CI_Controller
                         'nama_pengguna' => $namaPengguna
                     ];
                     //tambah ke database user
-                    $this->loginRegister_18->tambah_user($data);
+                    $this->Loginregister_18
+                        ->tambah_user($data);
 
                     //ambil data id user dan id peran
-                    $dataUser = $this->loginRegister_18->ambil_data_id_user($email);
+                    $dataUser = $this->Loginregister_18
+                        ->ambil_data_id_user($email);
                     $arrayData = [
                         'id_user' => $dataUser->id_user,
                         'id_peran' => $peran
                     ];
 
                     //tambah data ke trx peran
-                    $this->loginRegister_18->tambah_trx_peran($arrayData);
+                    $this->Loginregister_18
+                        ->tambah_trx_peran($arrayData);
                     redirect('login_18');
                 } else {
                     $data['pesan'] = 'password yang anda masukan harus sama';
                     $this->load->view('login/view_register_18');
                 }
             }
+        } else {
+            redirect('register_18');
         }
     }
 }

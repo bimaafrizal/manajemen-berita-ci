@@ -1,5 +1,5 @@
 <?php
-class manage_admin_18 extends CI_Controller
+class Manage_admin_18 extends CI_Controller
 {
     public function __construct()
     {
@@ -228,8 +228,7 @@ class manage_admin_18 extends CI_Controller
         $menu['menus'] = $this->db->query($querymenu)->result_array();
 
         $queryNamaMenu = "SELECT * FROM `peran` INNER JOIN `trx_menu` ON `trx_menu`.`id_peran` = `peran`.`id_peran`
-        INNER JOIN `menu` ON `menu`.`id_menu` = `trx_menu`.`id_menu`
-        WHERE `peran`.`id_peran` = $id_peran";
+        INNER JOIN `menu` ON `menu`.`id_menu` = `trx_menu`.`id_menu`";
         $menuMain['menus2'] = $this->db->query($queryNamaMenu)->result_array();
 
         // $arrayDataTrxPeran = array(
@@ -256,13 +255,41 @@ class manage_admin_18 extends CI_Controller
         $queryNamaUser = "SELECT * 
         FROM `peran` 
         INNER JOIN `trx_peran` ON `trx_peran`.`id_peran` = `peran`.`id_peran`
-        INNER JOIN `user` ON `user`.`id_user` = `trx_peran`.`id_user`
-        WHERE `peran`.`id_peran` = $id_peran";
+        INNER JOIN `user` ON `user`.`id_user` = `trx_peran`.`id_user`";
         $menuUser['users'] = $this->db->query($queryNamaUser)->result_array();
 
         $this->load->view('admin/Nav/header2');
         $this->load->view('admin/Nav/sidebar', $menu);
         $this->load->view('admin/Main/main_userDalamPeran', $menuUser);
+        $this->load->view('admin/Nav/footer');
+    }
+
+    public function edit_userDalamPeran($id)
+    {
+        $id_peran = 1;
+        $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
+        $menu['menus'] = $this->db->query($querymenu)->result_array();
+
+        $queryMenuPeran = "SELECT * 
+        FROM `peran` 
+        INNER JOIN `trx_peran` ON `trx_peran`.`id_peran` = `peran`.`id_peran`
+        INNER JOIN `user` ON `user`.`id_user` = `trx_peran`.`id_user` WHERE";
+        $menuPeran['perans'] = $this->db->query($queryMenuPeran)->result_array();
+
+        // $row = $this->Admin_18->ambil_data_id_trx_menu($id);
+        // // var_dump($row);
+        // // die;
+
+        // if ($row) {
+        //     $data = array(
+        //         'id_trx_peran' => $row->id_trx_peran,
+        //         'user' => $row->user
+        //     );
+        // }
+
+        $this->load->view('admin/Nav/header2');
+        $this->load->view('admin/Nav/sidebar', $menu);
+        $this->load->view('admin/Main/edit_userDalamPeran', $menuPeran);
         $this->load->view('admin/Nav/footer');
     }
 }

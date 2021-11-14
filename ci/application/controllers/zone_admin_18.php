@@ -1,5 +1,5 @@
 <?php
-class zone_admin_18 extends CI_Controller
+class Zone_admin_18 extends CI_Controller
 {
     public function __construct()
     {

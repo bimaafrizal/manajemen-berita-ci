@@ -75,14 +75,21 @@
                             <div class="col-2 themed-grid-col">AKSI</div>
                         </div>
                         <?php
+                        // $id_kategori = $this->encryption->encrypt(); 
+                        // 
+                        ?>
+                        <?php
                         foreach ($kategoris as $kategori) {
                         ?>
                             <div class="row mb-3">
                                 <div class="col-2 themed-grid-col"> <?php echo $kategori['id_kategori']; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $kategori['nama_kategori']; ?> </div>
                                 <div class="col-2 themed-grid-col">
-                                    <a class="btn btn-warning" href="<?= base_url('manage_contributor_18/edit_kategori/' . $kategori['id_kategori']); ?>" role="button">Edit</a>
-                                    <a class="btn btn-danger" href="<?= base_url('manage_contributor_18/hapus_kategori/' . $kategori['id_kategori']); ?>" role="button">Hapus</a>
+                                    <?php
+                                    $id_encrypt = encrypt_url($kategori['id_kategori']);
+                                    ?>
+                                    <a class="btn btn-warning" href="<?= base_url('manage_contributor_18/edit_kategori/' . $id_encrypt); ?>" role="button">Edit</a>
+                                    <a class="btn btn-danger" href="<?= base_url('manage_contributor_18/hapus_kategori/' . $id_encrypt); ?>" role="button">Hapus</a>
                                 </div>
                             </div>
 

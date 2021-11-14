@@ -84,7 +84,7 @@
                                 <div class="col-2 themed-grid-col"> <?php echo $user['id_peran']; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $user['nama_peran']; ?> </div>
                                 <div class="col-2 themed-grid-col">
-                                    <a class="btn btn-warning" href="<?= base_url('manage_admin_18/edit_peran_dalam_peran/' . $user['id_user']) ?>" role="button"> Edit </a>
+                                    <a class="btn btn-warning" href="<?= base_url('manage_admin_18/edit_userDalamPeran/' . $user['id_user']) ?>" role="button"> Edit </a>
                                 </div>
                             </div>
 

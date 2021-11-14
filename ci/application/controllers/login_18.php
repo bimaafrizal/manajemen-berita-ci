@@ -1,16 +1,23 @@
 <?php
-class login_18 extends CI_Controller
+class Login_18 extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('loginRegister_18');
+        $this->load->model('Loginregister_18');
     }
 
     public function index()
     {
         // $data['email'] = $this->db->get_whare();
-        $this->load->view('login/view_login_18');
+        $this->form_validation->set_rules('user', 'email', 'required');
+        $this->form_validation->set_rules('password', 'password', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('login/view_login_18');
+        } else {
+            $this->proses_login();
+        }
     }
 
     public function proses_login()
@@ -20,7 +27,8 @@ class login_18 extends CI_Controller
         $login = $this->db->get_where('user', ['user' => $user])->row_array();
 
         if ($user != '' && $password != '') {
-            $row = $this->loginRegister_18->cek_user($user, $password);
+            $row = $this->Loginregister_18
+                ->cek_user($user, $password);
 
             //buat session
             if ($row) {
@@ -33,7 +41,8 @@ class login_18 extends CI_Controller
                 $this->session->set_userdata($data);
                 $id_user = $this->session->userdata('id_user');
 
-                $dataPeran = $this->loginRegister_18->ambil_id_peran_trx($id_user);
+                $dataPeran = $this->Loginregister_18
+                    ->ambil_id_peran_trx($id_user);
                 $arrayDataUser = array(
                     'id_peran' => $dataPeran->id_peran
                 );
@@ -42,7 +51,8 @@ class login_18 extends CI_Controller
                 if ($dataPeran) {
                     //role admin
                     if ($arrayDataUser['id_peran'] == "1") {
-                        $ambilUrl = $this->loginRegister_18->ambil_url_peran($arrayDataUser['id_peran']);
+                        $ambilUrl = $this->Loginregister_18
+                            ->ambil_url_peran($arrayDataUser['id_peran']);
                         $arrayUrl = array(
                             'url' => $ambilUrl->url
                         );
@@ -50,7 +60,8 @@ class login_18 extends CI_Controller
 
                         //role contributtor
                     } elseif ($arrayDataUser['id_peran'] == "2") {
-                        $ambilUrl = $this->loginRegister_18->ambil_url_peran($arrayDataUser['id_peran']);
+                        $ambilUrl = $this->Loginregister_18
+                            ->ambil_url_peran($arrayDataUser['id_peran']);
                         $arrayUrl = array(
                             'url' => $ambilUrl->url
                         );
@@ -65,10 +76,10 @@ class login_18 extends CI_Controller
                 redirect('login_18');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert
-            alert-danger" role="alert">
-            Username dan Password Wajib diisi
-         </div>');
+            //     $this->session->set_flashdata('message', '<div class="alert
+            //     alert-danger" role="alert">
+            //     Username dan Password Wajib diisi
+            //  </div>');
             redirect('login_18');
         }
     }

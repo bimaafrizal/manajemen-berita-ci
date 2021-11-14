@@ -1,5 +1,5 @@
 <?php
-class zone_contributor_18 extends CI_Controller
+class Zone_contributor_18 extends CI_Controller
 {
     public function __construct()
     {
@@ -17,11 +17,19 @@ class zone_contributor_18 extends CI_Controller
         $id_user = $this->session->userdata('id_user');
         $query = "SELECT * FROM `kategori_berita` WHERE `id_user` = $id_user";
         $kategori['kategoris'] = $this->db->query($query)->result_array();
-        // var_dump($dataKategori);
-        // die;
-        // $arrayDataKategori = array(
-        //     'datas' => $dataKategori
-        // );
+
+
+        //test ecryp decryp
+        // $plain_text = "Bima";
+        // $test_enktip = $this->encryption->encrypt($plain_text);
+        // echo $test_enktip;
+        // echo "<br>";
+
+        // $hasilTest = $this->encryption->decrypt($test_enktip);
+        // echo $hasilTest;
+        // echo "<br>";
+
+        
 
         $this->load->view('admin/Nav/header2');
         $this->load->view('admin/Nav/sidebar', $menu);

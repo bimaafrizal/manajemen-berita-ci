@@ -4,6 +4,7 @@ class Contributor_18 extends CI_Model
     public $table_kategori = 'kategori_berita';
     public $table_peran = 'peran';
     public $id_kategori = 'id_kategori';
+    public $id_berita = 'id_berita';
     public $table_berita = 'berita';
     public $table_berita_kategori = 'trx_berita_kategori';
 
@@ -60,5 +61,36 @@ class Contributor_18 extends CI_Model
     function delete_user($id)
     {
         return $this->db->delete($this->table_user, array('id_user' => $id));
+    }
+
+
+    function total_row()
+    {
+        return $this->db->get($this->table_berita)->num_rows();
+    }
+    function berita_page($per_page, $awal)
+    {
+        if ($awal == '') {
+            $awal_page = '0';
+        } else {
+
+            $awal_page = $awal;
+        }
+        return $this->db->query("SELECT * FROM berita limit $per_page offset $awal_page")->result_array();
+    }
+
+    function ambil_id_berita($id)
+    {
+        $this->db->where($this->id_berita, $id);
+        return $this->db->get($this->table_berita)->row();
+    }
+    function edit_berita($data)
+    {
+        $id = array('id_berita' => $this->input->post('id_berita'));
+        return $this->db->update($this->table_berita, $data, $id);
+    }
+    function delete_berita($id)
+    {
+        return $this->db->delete($this->table_berita, array('id_berita' => $id));
     }
 }

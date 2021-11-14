@@ -29,7 +29,8 @@
 
         <form action="<?= base_url('login_18/proses_login') ?>" method="post">
           <div class="input-group mb-3">
-            <input type="email" class="form-control" name="user" placeholder="Email">
+            <input type="text" class="form-control" name="user" id="user" placeholder="Email">
+            <?php echo form_error('user', '<p>', '</p>') ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -37,7 +38,8 @@
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            <?php echo form_error('password', '<p>', '</p>') ?>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>

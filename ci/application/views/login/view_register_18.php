@@ -32,7 +32,8 @@
 
                 <form action="<?= base_url('register_18/proses_register') ?>" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="Email">
+                        <input type="text" class="form-control" name="email" id='email' placeholder="Email">
+                        <?php echo form_error('email', '<p>', '</p>') ?>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -51,18 +52,18 @@
                         <label for="peran">Peran : </label>
                         <select class="form-control" id="peran" name="peran">
                             <?php
-                           
+
                             foreach ($perans as $peran) :
                                 // var_dump($perans);
-                    ?>
+                            ?>
                                 <option value="<?php echo $peran->id_peran ?>"><?php echo $peran->nama_peran ?></option>
-                    <?php endforeach; ?>
-                    </select>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
                         </div>
-                    </div>
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" name="password" placeholder="Password">

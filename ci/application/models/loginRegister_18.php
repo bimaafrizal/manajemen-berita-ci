@@ -1,5 +1,5 @@
 <?php
-class loginRegister_18 extends CI_Model
+class Loginregister_18 extends CI_Model
 {
     public $table_user = 'user';
     public $id_user = 'id_user';
