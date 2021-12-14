@@ -77,10 +77,6 @@
                                 <input type="text" name="judul" autofocus placeholder="cari judul" autocomplete="off" id="judul">
 
                             </div>
-                            <col-2>
-                            </col-2>
-                            <col-2>
-                            </col-2>
                             <div class="col-2 themed-grid-col">#</div>
                             <div class="col-2 themed-grid-col">Judul Berita</div>
                             <div class="col-2 themed-grid-col">Isi Berita</div>
@@ -89,27 +85,30 @@
                             <div class="col-2 themed-grid-col">AKSI</div>
                         </div>
                         <?php
-                        foreach ($beritas as $berita) {
+                        $kategori = $_GET['kategori'];
+                        if ($kategori == null) {
+                            foreach ($beritas as $berita) {
 
-                            // var_dump($beritas);
-                            // die;
+                                // var_dump($beritas);
+                                // die;
                         ?>
-                            <div class="row mb-3">
-                                <div class="col-2 themed-grid-col"> <?php echo $berita['id_berita']; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $berita['judul_berita']; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $berita['isi_berita']; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?= date('d F Y', $berita['tanggal']); ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $berita['nama_kategori']; ?> </div>
-                                <div class="col-2 themed-grid-col">
-                                    <a class="btn btn-warning" href="<?= base_url('Manage_contributor_18/edit_berita/' . $berita['id_berita']); ?>" role="button">Edit</a>
-                                    <a class="btn btn-danger" href="<?= base_url('Manage_contributor_18/hapus_berita/' . $berita['id_berita']); ?>" role="button">Hapus</a>
+                                <div class="row mb-3">
+                                    <div class="col-2 themed-grid-col"> <?php echo $berita['id_berita']; ?> </div>
+                                    <div class="col-2 themed-grid-col"> <?php echo $berita['judul_berita']; ?> </div>
+                                    <div class="col-2 themed-grid-col"> <?php echo $berita['isi_berita']; ?> </div>
+                                    <div class="col-2 themed-grid-col"> <?= date('d F Y', $berita['tanggal']); ?> </div>
+                                    <div class="col-2 themed-grid-col"> <?php echo $berita['nama_kategori']; ?> </div>
+                                    <div class="col-2 themed-grid-col">
+                                        <a class="btn btn-warning" href="<?= base_url('Manage_contributor_18/edit_berita/' . $berita['id_berita']); ?>" role="button">Edit</a>
+                                        <a class="btn btn-danger" href="<?= base_url('Manage_contributor_18/hapus_berita/' . $berita['id_berita']); ?>" role="button">Hapus</a>
+                                    </div>
                                 </div>
-                            </div>
 
+                            <?php } ?>
+                            <ul>
+                                <?php echo $this->pagination->create_links(); ?>
+                            </ul>
                         <?php } ?>
-                        <ul>
-                            <?php echo $this->pagination->create_links(); ?>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -117,21 +116,3 @@
 </body>
 
 </html>
-
-<script>
-    var kategori = document.getElementById('kategori');
-    var judul = document.getElementById('judul');
-
-    [kategori, judul].forEach((element) => {
-        element.addEventListener('keyup', function() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    container.innerHTML = xhr.responseText;
-                }
-            }
-            xhr.open('GET', 'newindex.php?kategori=' + element.value, true);
-            xhr.send();
-        });
-    });
-</script>

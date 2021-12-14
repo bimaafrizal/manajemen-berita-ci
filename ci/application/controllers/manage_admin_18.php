@@ -173,7 +173,6 @@ class Manage_admin_18 extends CI_Controller
                 'id_menu' => $row->id_menu,
                 'nama_menu' => $row->nama_menu,
                 'url' => $row->url,
-                'nomor_urut' => $row->nomor_urut,
                 'icon' => $row->icon
             );
         }
@@ -188,14 +187,12 @@ class Manage_admin_18 extends CI_Controller
 
         $nama_menu = $this->input->post('nama_menu');
         $url = $this->input->post('url');
-        $nomor_urut = $this->input->post('nomor_urut');
         $icon = $this->input->post('icon');
 
-        if (($nama_menu != '') and ($url != '') and ($nomor_urut != '') and ($icon != '')) {
+        if (($nama_menu != '') and ($url != '') and ($icon != '')) {
             $data = [
                 'nama_menu' => $nama_menu,
                 'url' => $url,
-                'nomor_urut' => $nomor_urut,
                 'icon' => $icon
             ];
 
@@ -291,5 +288,72 @@ class Manage_admin_18 extends CI_Controller
         $this->load->view('admin/Nav/sidebar', $menu);
         $this->load->view('admin/Main/edit_userDalamPeran', $menuPeran);
         $this->load->view('admin/Nav/footer');
+    }
+
+    public function tambah_user()
+    {
+        if ($this->input->is_ajax_request() == true) {
+            $msg = [
+                'sukses' => $this->load->view('admin/Main/modal_tambah_user', '', true)
+            ];
+            echo json_encode($msg);
+        }
+    }
+
+    public function simpandata()
+    {
+        if ($this->input->is_ajax_request() == true) {
+            $email = $this->input->post('email', true);
+            $namaPengguna = $this->input->post('namaPengguna', true);
+            $peran = $this->input->post('peran', true);
+            $password = $this->input->post('password', true);
+            $konfirmPassword = $this->input->post('konfirmPass', true);
+
+            $this->form_validation->set_rules(
+                'email',
+                'EMAIL',
+                'trim|required|is_unique[user.user]'
+            );
+            $this->form_validation->set_rules(
+                'namaPengguna',
+                'Nama Pengguna',
+                'trim|required'
+            );
+
+            if ($this->form_validation->run() == TRUE) {
+            } else {
+                $msg = [
+                    'error' => '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    ' . validation_errors() . '
+                </div>'
+                ];
+            }
+            echo json_encode($msg);
+        }
+    }
+
+    public function pendaftaran()
+    {
+        $email = $this->input->post('email');
+        $insert_data = array(
+            'user' => $this->input->post('email'),
+            'nama_pengguna' => $this->input->post('namaPengguna'),
+            'password' => $this->input->post('password')
+        );
+
+        $this->load->model('Admin_18');
+        $this->Admin_18->tambah_user($insert_data);
+
+        $dataUser = $this->Admin_18->ambil_data_id_user($email);
+
+        $arrayData = [
+            'id_user' => $dataUser->id_user,
+            'id_peran' => $this->input->post('peran')
+        ];
+        $this->Admin_18->tambah_trx_peran($arrayData);
+        redirect('zone_admin_18');
     }
 }

@@ -71,7 +71,6 @@
                             <div class="col-2 themed-grid-col">#</div>
                             <div class="col-2 themed-grid-col">Nama Menu</div>
                             <div class="col-2 themed-grid-col">Url</div>
-                            <div class="col-2 themed-grid-col">Nomor Urut</div>
                             <div class="col-2 themed-grid-col">Icon</div>
                             <div class="col-2 themed-grid-col">Aksi</div>
                         </div>
@@ -82,7 +81,6 @@
                                 <div class="col-2 themed-grid-col"> <?php echo $data->id_menu; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $data->nama_menu; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $data->url; ?> </div>
-                                <div class="col-2 themed-grid-col"> <?php echo $data->nomor_urut; ?> </div>
                                 <div class="col-2 themed-grid-col"> <?php echo $data->icon; ?> </div>
                                 <div class="col-2 themed-grid-col">
                                     <a class="btn btn-warning" href="<?= base_url('manage_admin_18/edit_menu/' . $data->id_menu) ?>" role="button">Edit</a>

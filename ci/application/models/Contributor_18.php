@@ -7,6 +7,7 @@ class Contributor_18 extends CI_Model
     public $id_berita = 'id_berita';
     public $table_berita = 'berita';
     public $table_berita_kategori = 'trx_berita_kategori';
+    public $table_trx_peran = 'trx_peran';
 
     //crud kategori
     public function ambil_data_kategori()
@@ -76,7 +77,7 @@ class Contributor_18 extends CI_Model
 
             $awal_page = $awal;
         }
-        return $this->db->query("SELECT * FROM berita limit $per_page offset $awal_page")->result_array();
+        return $this->db->query("SELECT * FROM `berita` INNER JOIN `trx_berita_kategori` ON `trx_berita_kategori`.`id_berita` = `berita`.`id_berita` JOIN `kategori_berita` ON `kategori_berita`.`id_kategori` = `trx_berita_kategori`.`id_kategori` limit $per_page offset $awal_page")->result_array();
     }
 
     function ambil_id_berita($id)
@@ -92,5 +93,11 @@ class Contributor_18 extends CI_Model
     function delete_berita($id)
     {
         return $this->db->delete($this->table_berita, array('id_berita' => $id));
+    }
+
+    function ambil_id_peran_trx($user)
+    {
+        $this->db->where('id_user', $user);
+        return $this->db->get($this->table_trx_peran)->row();
     }
 }

@@ -98,9 +98,6 @@ class Manage_contributor_18 extends CI_Controller
         $menu['menus'] = $this->db->query($querymenu)->result_array();
 
         // $dataKategori = $this->Contributor_18->ambil_data_kategori();
-        $id_user = $this->session->userdata('id_user');
-        $queryBerita = "SELECT * FROM berita";
-        $berita['beritas'] = $this->db->query($queryBerita)->result_array();
 
         $total_row = $this->Contributor_18->total_row();
         $config['base_url'] = base_url() . 'Manage_contributor_18/berita/';
@@ -115,9 +112,9 @@ class Manage_contributor_18 extends CI_Controller
         $data_berita_page = array(
             'beritas' => $data_page,
         );
-        var_dump($total_row);
-        die;
-        // var_dump($berita);
+        // var_dump($total_row);
+        // die;
+        // // var_dump($berita);
         // die;
         // var_dump($dataKategori);
         // die;

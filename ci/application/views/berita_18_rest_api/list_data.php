@@ -89,7 +89,7 @@
                             <div class="col-2 themed-grid-col">AKSI</div>
                         </div>
                         <?php
-                        foreach ($beritas as $berita) {
+                        foreach ($databerita as $berita) {
 
                             // var_dump($beritas);
                             // die;

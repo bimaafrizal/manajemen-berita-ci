@@ -34,14 +34,40 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header"> Dashboard </li>
-                <?php foreach ($menus as $menu) { ?>
-                    <li class="nav-item">
-                        <a href="<?= base_url($menu['url']) ?>" class="nav-link">
-                            <i class="<?= $menu['icon'] ?>"></i>
-                            <p class="text"><?= $menu['nama_menu'] ?></p>
-                        </a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item">
+
+                    <?php $id_user = $this->session->userdata('id_user');
+                    $queryNamaMenu = "SELECT `id_peran` FROM `trx_peran` WHERE `id_user` = $id_user ";
+                    $menuMain = $this->db->query($queryNamaMenu)->row_array();
+                    $peran = $menuMain['id_peran'];
+                    if ($peran == 1) {
+                    ?>
+                        <select class="form-control" name="jenis_menu" onchange="jenisMenu(this)" id="jenis_menu" placeholder="">
+                            <option>Pilih Jenis Menu</option>
+                            <option value="KELOLA_USER">Kelola User</option>
+                            <option value="KELOLA_MENU">Kelola Menu</option>>
+                        </select>
+                        <?php foreach ($menus as $menu) { ?>
+
+                            <div id="<?php echo $menu['kelompok_menu'] ?>" style="display:none">
+                                <a href="<?= base_url($menu['url']) ?>" class="nav-link">
+                                    <i class="<?= $menu['icon'] ?>"></i>
+                                    <p class="text"><?= $menu['nama_menu'] ?></p>
+                                </a>
+                            </div>
+                        <?php } ?>
+
+                    <?php } else { ?>
+                        <?php foreach ($menus as $menu) { ?>
+                            <div id="<?php echo $menu['kelompok_menu'] ?>">
+                                <a href="<?= base_url($menu['url']) ?>" class="nav-link">
+                                    <i class="<?= $menu['icon'] ?>"></i>
+                                    <p class="text"><?= $menu['nama_menu'] ?></p>
+                                </a>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+                </li>
                 <li class="nav-item">
                     <a href="<?= base_url('login_18/logout') ?>" class="nav-link">
                         <i class="fas fa-sign-in-alt"></i>
@@ -54,3 +80,26 @@
     </div>
     <!-- /.sidebar -->
 </aside>
+<script>
+    function jenisMenu(that) {
+        if (that.value == "KELOLA_USER") {
+            document.getElementById("1").style.display = "block";
+            document.getElementById("2").style.display = "block";
+            document.getElementById("3").style.display = "block";
+            document.getElementById("4").style.display = "none";
+            document.getElementById("5").style.display = "none";
+        } else if (that.value == "KELOLA_MENU") {
+            document.getElementById("1").style.display = "none";
+            document.getElementById("2").style.display = "none";
+            document.getElementById("3").style.display = "none";
+            document.getElementById("4").style.display = "block";
+            document.getElementById("5").style.display = "block";
+        } else {
+            document.getElementById("1").style.display = "none";
+            document.getElementById("2").style.display = "none";
+            document.getElementById("3").style.display = "none";
+            document.getElementById("4").style.display = "none";
+            document.getElementById("5").style.display = "none";
+        }
+    }
+</script>

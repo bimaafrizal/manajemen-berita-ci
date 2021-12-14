@@ -34,10 +34,6 @@
                             <label for="exampleInputPassword1">Url</label>
                             <input type="text" class="form-control" id="url" name="url" placeholder="url menu" value="<?= $url ?>">
                         </div>
-                        <div class=" form-group">
-                            <label for="exampleInputPassword1">Nomor urut</label>
-                            <input type="text" class="form-control" id="nomor_urut" name="nomor_urut" placeholder="nomor urut menu" value="<?= $nomor_urut ?>">
-                        </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Icon</label>
                             <input type="text" class="form-control" id="icon" name="icon" placeholder="Your Icon" value="<?= $icon ?>">
