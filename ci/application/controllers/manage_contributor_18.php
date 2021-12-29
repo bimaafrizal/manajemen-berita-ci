@@ -165,7 +165,7 @@ class Manage_contributor_18 extends CI_Controller
                 'id_berita' => $id['id_berita']
             ];
 
-            $tes = $this->Contributor_18->tambah_berita_kategori($data2);
+            $this->Contributor_18->tambah_berita_kategori($data2);
             // var_dump($id);
             // die;
 
