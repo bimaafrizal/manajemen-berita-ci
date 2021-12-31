@@ -261,7 +261,7 @@ class Manage_admin_18 extends CI_Controller
         $this->load->view('admin/Nav/footer');
     }
 
-    public function edit_userDalamPeran($id)
+    public function edit_userDalamPeran()
     {
         $id_peran = 1;
         $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";

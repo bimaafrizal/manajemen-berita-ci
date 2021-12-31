@@ -40,7 +40,7 @@ class Manage_contributor_18 extends CI_Controller
     public function edit_kategori($id)
     {
         $id_encrypt = decrypt_url($id);
-        $id_peran = 1;
+        $id_peran = 2;
         $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
         $menu['menus'] = $this->db->query($querymenu)->result_array();
 

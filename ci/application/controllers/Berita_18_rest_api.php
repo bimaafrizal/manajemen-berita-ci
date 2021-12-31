@@ -13,7 +13,14 @@ class Berita_18_rest_api extends CI_Controller
     function index()
     {
         $data['databerita'] = json_decode($this->curl->simple_get($this->API . '/berita'), TRUE);
+        $id_peran = 2;
+        $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
+        $menu['menus'] = $this->db->query($querymenu)->result_array();
+
+        $this->load->view('admin/Nav/header2');
+        $this->load->view('admin/Nav/sidebar', $menu);
         $this->load->view('berita_18_rest_api/list_data', $data);
+        $this->load->view('admin/Nav/footer');
     }
 
     function tambah_berita()
@@ -32,7 +39,14 @@ class Berita_18_rest_api extends CI_Controller
             }
             redirect('Berita_18_rest_api');
         } else {
+            $id_peran = 2;
+            $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
+            $menu['menus'] = $this->db->query($querymenu)->result_array();
+
+            $this->load->view('admin/Nav/header2');
+            $this->load->view('admin/Nav/sidebar', $menu);
             $this->load->view('berita_18_rest_api/tambah_berita');
+            $this->load->view('admin/Nav/footer');
         }
     }
 
@@ -55,7 +69,14 @@ class Berita_18_rest_api extends CI_Controller
         } else {
             $parameter  = array('id_berita' => $this->uri->segment(3));
             $data['databerita'] = json_decode($this->curl->simple_get($this->API . '/berita', $parameter));
+            $id_peran = 2;
+            $querymenu = "SELECT * FROM `trx_menu` INNER JOIN `menu` ON `trx_menu`.`id_menu` = `menu`.`id_menu` WHERE `trx_menu`.`id_peran` = $id_peran";
+            $menu['menus'] = $this->db->query($querymenu)->result_array();
+
+            $this->load->view('admin/Nav/header2');
+            $this->load->view('admin/Nav/sidebar', $menu);
             $this->load->view('berita_18_rest_api/edit_berita', $data);
+            $this->load->view('admin/Nav/footer');
         }
     }
 
